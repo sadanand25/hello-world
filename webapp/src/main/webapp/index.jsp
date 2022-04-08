@@ -13,7 +13,7 @@
     <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
     <br>
 
-    <label for="email"><b>Email ID of student </b></label>
+    <label for="email"><b>Enter Email </b></label>
     <input type="text" placeholder="Enter Email" name="email" id="email" required>
     <br>
 
