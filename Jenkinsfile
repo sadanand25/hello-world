@@ -15,7 +15,7 @@ pipeline {
             }
         }
         stage('Build') {
-		steps{
+           steps{
         // Run the maven build
               withEnv(["M2_HOME=/opt/apache-maven-3.8.5"]) {
                 sh '"$M2_HOME/bin/mvn" -Dmaven.test.failure.ignore clean install'
@@ -24,7 +24,7 @@ pipeline {
           }
 		}
         stage("Docker create and Push images"){
-            steps{
+           steps{
               sshPublisher(publishers: [sshPublisherDesc(configName: 'kubemaster', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'sudo ansible-playbook /opt/docker/dockerimagepush.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//docker', remoteDirectorySDF: false, removePrefix: 'webapp/target', sourceFiles: '**/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
